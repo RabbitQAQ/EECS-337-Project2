@@ -69,6 +69,7 @@ ITEM_PIPELINES = {
     'EECS337Project2.pipelines.InitPipeline': 10,
     'EECS337Project2.pipelines.IngredientProcessPipeline': 20,
     'EECS337Project2.pipelines.DirectionProcessPipeline': 30,
+    'EECS337Project2.pipelines.StatisticPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
