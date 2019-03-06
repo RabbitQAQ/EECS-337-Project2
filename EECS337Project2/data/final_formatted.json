@@ -1,20 +1,10 @@
 {
   "oil": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "salt": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -27,7 +17,10 @@
   },
   "garlic": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -38,9 +31,12 @@
       "to vegetarian": ""
     }
   },
-  "butter": {
+  "salt": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -53,7 +49,10 @@
   },
   "ground pepper": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -66,20 +65,10 @@
   },
   "onion": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "beans": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -92,33 +81,10 @@
   },
   "sugar": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "Parmesan cheese": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "bell pepper": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -131,7 +97,41 @@
   },
   "water": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "beans": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "Parmesan cheese": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian"
     ],
     "styles": [],
     "substitutions": {
@@ -144,7 +144,10 @@
   },
   "basil": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -155,48 +158,11 @@
       "to vegetarian": ""
     }
   },
-  "flour": {
+  "butter": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "ground cumin": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "salt pepper": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "milk": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian"
     ],
     "styles": [],
     "substitutions": {
@@ -209,85 +175,10 @@
   },
   "tomatoes": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "spinach": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "mozzarella cheese": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "pepper": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "cheese": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "cilantro": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "paprika": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -300,59 +191,10 @@
   },
   "parsley": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "bread crumbs": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "mayonnaise": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "lemon juice": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "vanilla extract": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -365,7 +207,10 @@
   },
   "oregano": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -376,9 +221,12 @@
       "to vegetarian": ""
     }
   },
-  "broth": {
+  "bell pepper": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -389,9 +237,12 @@
       "to vegetarian": ""
     }
   },
-  "mushrooms": {
+  "ground cumin": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -402,22 +253,12 @@
       "to vegetarian": ""
     }
   },
-  "cream": {
+  "flour": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "onions": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -430,7 +271,10 @@
   },
   "powder": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -441,9 +285,12 @@
       "to vegetarian": ""
     }
   },
-  "cayenne pepper": {
+  "salt pepper": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -454,9 +301,12 @@
       "to vegetarian": ""
     }
   },
-  "hearts": {
+  "pepper": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -467,9 +317,11 @@
       "to vegetarian": ""
     }
   },
-  "ounce package cream cheese": {
+  "cilantro": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -480,9 +332,10 @@
       "to vegetarian": ""
     }
   },
-  "Cheddar cheese": {
+  "mozzarella cheese": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "italian"
     ],
     "styles": [],
     "substitutions": {
@@ -493,9 +346,12 @@
       "to vegetarian": ""
     }
   },
-  "zucchini": {
+  "broth": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -506,9 +362,12 @@
       "to vegetarian": ""
     }
   },
-  "pepper flakes": {
+  "lemon juice": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -519,87 +378,12 @@
       "to vegetarian": ""
     }
   },
-  "chili powder": {
+  "onions": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "mustard": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "potatoes": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "salt ground pepper": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "quinoa": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "tortillas": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "seeds": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -612,7 +396,10 @@
   },
   "vinegar": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -623,9 +410,12 @@
       "to vegetarian": ""
     }
   },
-  "garlic salt": {
+  "cayenne pepper": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -636,9 +426,12 @@
       "to vegetarian": ""
     }
   },
-  "celery": {
+  "spinach": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -649,165 +442,12 @@
       "to vegetarian": ""
     }
   },
-  "bell peppers": {
+  "milk": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "ground turmeric": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "pasta sauce": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "lime juice": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "ginger root": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "chile peppers": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "plum tomatoes": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "corn kernels": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "strawberries": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "brown sugar": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "cranberries": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "wine vinegar": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "pecans": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -820,7 +460,10 @@
   },
   "sauce": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -831,9 +474,12 @@
       "to vegetarian": ""
     }
   },
-  "lentils": {
+  "pepper flakes": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -844,9 +490,12 @@
       "to vegetarian": ""
     }
   },
-  "sweet potatoes": {
+  "chili powder": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -857,9 +506,12 @@
       "to vegetarian": ""
     }
   },
-  "elbow macaroni": {
+  "bread crumbs": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -870,9 +522,11 @@
       "to vegetarian": ""
     }
   },
-  "squash": {
+  "vanilla extract": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -883,9 +537,11 @@
       "to vegetarian": ""
     }
   },
-  "kernel corn": {
+  "cream": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian"
     ],
     "styles": [],
     "substitutions": {
@@ -896,9 +552,12 @@
       "to vegetarian": ""
     }
   },
-  "Monterey Jack cheese": {
+  "celery": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -909,9 +568,12 @@
       "to vegetarian": ""
     }
   },
-  "dill weed": {
+  "paste": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -922,9 +584,103 @@
       "to vegetarian": ""
     }
   },
-  "baking powder": {
+  "ground beef": {
     "category": [
-      "vegetarian"
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "mushrooms": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "paprika": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "wine": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "cheese": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "salt ground pepper": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "potatoes": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -937,7 +693,9 @@
   },
   "juice": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -948,9 +706,12 @@
       "to vegetarian": ""
     }
   },
-  "ricotta cheese": {
+  "bell peppers": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -961,9 +722,11 @@
       "to vegetarian": ""
     }
   },
-  "asparagus": {
+  "ground cinnamon": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -974,9 +737,11 @@
       "to vegetarian": ""
     }
   },
-  "soy milk": {
+  "mayonnaise": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian"
     ],
     "styles": [],
     "substitutions": {
@@ -987,9 +752,11 @@
       "to vegetarian": ""
     }
   },
-  "almonds": {
+  "ginger root": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -1000,9 +767,12 @@
       "to vegetarian": ""
     }
   },
-  "cumin": {
+  "quinoa": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -1013,243 +783,12 @@
       "to vegetarian": ""
     }
   },
-  "tomato": {
+  "garlic salt": {
     "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "olives": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "ground coriander": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "cherry tomatoes": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "romaine lettuce": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "soy sauce": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "cashews": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "kosher salt": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "onion powder": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "potato": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "Parmesan": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "ounce package elbow macaroni": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "ounce package Cheddar cheese": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "baguette": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "Romano cheese": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "herb feta": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "cooking spray": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "balsamic vinegar": {
-    "category": [
-      "vegetarian"
-    ],
-    "styles": [],
-    "substitutions": {
-      "to healthy": "",
-      "to italian": "",
-      "to meaty": "",
-      "to vegan": "",
-      "to vegetarian": ""
-    }
-  },
-  "jalapeno pepper": {
-    "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {
@@ -1262,7 +801,209 @@
   },
   "thyme": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "kernel corn": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "ground turmeric": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "zucchini": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "seasoning": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "lime juice": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "plum tomatoes": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "honey": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "oats": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "carrots": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "boneless chicken breast": {
+    "category": [
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "spaghetti": {
+    "category": [
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "olives": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "Cheddar cheese": {
+    "category": [
+      "vegetarian",
+      "italian"
     ],
     "styles": [],
     "substitutions": {
@@ -1275,7 +1016,86 @@
   },
   "rosemary": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "baking powder": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "corn kernels": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "onion powder": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "lentils": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "mustard": {
+    "category": [
+      "vegetarian",
+      "healthy"
     ],
     "styles": [],
     "substitutions": {
@@ -1288,7 +1108,424 @@
   },
   "tahini": {
     "category": [
-      "vegetarian"
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "peppers": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "sea salt": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "cumin": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "hearts": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "leaves": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "noodles": {
+    "category": [
+      "vegetarian",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "basil leaves": {
+    "category": [
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "almonds": {
+    "category": [
+      "vegetarian",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "ground coriander": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "soy sauce": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "ounce package cream cheese": {
+    "category": [
+      "vegetarian",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "strawberries": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "tortillas": {
+    "category": [
+      "vegetarian",
+      "healthy"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "kosher salt": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "cottage cheese": {
+    "category": [
+      "vegetarian",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "Romano cheese": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "oil for frying": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "ricotta cheese": {
+    "category": [
+      "vegetarian",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "wheat flour": {
+    "category": [
+      "healthy"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "yeast": {
+    "category": [
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "sausage": {
+    "category": [
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "brown sugar": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "seeds": {
+    "category": [
+      "vegetarian",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "wine vinegar": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "leaf": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "italian",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "sweet potatoes": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "dill weed": {
+    "category": [
+      "vegetarian",
+      "healthy"
+    ],
+    "styles": [],
+    "substitutions": {
+      "to healthy": "",
+      "to italian": "",
+      "to meaty": "",
+      "to vegan": "",
+      "to vegetarian": ""
+    }
+  },
+  "baking soda": {
+    "category": [
+      "vegetarian",
+      "healthy",
+      "vegan"
     ],
     "styles": [],
     "substitutions": {

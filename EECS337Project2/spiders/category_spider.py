@@ -1,15 +1,13 @@
 from scrapy import Spider
 import scrapy
 
-from EECS337Project2.items import Recipe
-
 baseUrlDict = {
-    "vegetarian" : "https://www.allrecipes.com/recipes/87/everyday-cooking/vegetarian/?page="
+    "vegetarian": "https://www.allrecipes.com/recipes/87/everyday-cooking/vegetarian/?page=",
+    "healthy": "https://www.allrecipes.com/recipes/84/healthy-recipes/?page=",
+    "italian": "https://www.allrecipes.com/recipes/723/world-cuisine/european/italian/?page=",
+    "vegan": "https://www.allrecipes.com/recipes/1227/everyday-cooking/vegan/?page="
 }
-targetCategory = "vegetarian"
-
-# clean the file
-# open("data/" + targetCategory + "_urls.txt", "w").close()
+targetCategory = "vegan"
 
 class CategorySpider(Spider):
     pageCount = 1
@@ -22,7 +20,7 @@ class CategorySpider(Spider):
     def parse(self, response):
         # clean the file
         if self.isFirstTime:
-            open("data/" + targetCategory + "_urls.txt", "w").close()
+            open("data/" + targetCategory + "_urls.txt", "w+").close()
             self.isFirstTime = False
         if (self.pageCount > self.maxCount):
             return

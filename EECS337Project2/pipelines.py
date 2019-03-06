@@ -204,22 +204,44 @@ class DirectionProcessPipeline(object):
 
 class StatisticPipeline(object):
     count = 0
+    categoryCount = 0
+    indexDict = recipes_spider.RecipesSpider.indexDict
+    categoryList = recipes_spider.RecipesSpider.categoryList
+    currCategory = categoryList[0]
     maxIter = 100
     def process_item(self, item, spider):
         if isinstance(item, Recipe):
+            # Change category
+            if self.categoryCount == self.indexDict[self.currCategory]:
+                nextIndex = self.categoryList.index(self.currCategory) + 1
+                if nextIndex < len(self.categoryList):
+                    self.currCategory = self.categoryList[nextIndex]
+                    self.categoryCount = 0
+            else:
+                self.categoryCount += 1
             # Do dict count
             for i in item['ingredients']:
                 if i['name'] == '':
                     continue
                 if i['name'] in ingreDict:
-                    ingreDict[i['name']] += 1
+                    ingreDict[i['name']]['count'] += 1
+                    if self.currCategory not in ingreDict[i['name']]['category']:
+                        ingreDict[i['name']]['category'].append(self.currCategory)
                 else:
-                    ingreDict[i['name']] = 1
+                    ingreDict[i['name']] = {}
+                    ingreDict[i['name']]['count'] = 1
+                    ingreDict[i['name']]['category'] = []
+                    ingreDict[i['name']]['category'].append(self.currCategory)
+
             # If it reaches the max count
             self.count += 1
-            if self.count >= recipes_spider.RecipesSpider.urlCount:
+            if self.count >= recipes_spider.RecipesSpider.maxUrlCount:
+                # Delete most frequent ones
+                # for k, v in list(ingreDict.items()):
+                #     if len(v['category']) >= 3:
+                #         del ingreDict[k]
                 # Sort dict
-                sortedIngreDict = sorted(ingreDict.items(), key=lambda entry: entry[1], reverse=True)
+                sortedIngreDict = sorted(ingreDict.items(), key=lambda entry: entry[1]['count'], reverse=True)
                 jsonFormat = {}
                 if self.maxIter > len(sortedIngreDict):
                     self.maxIter = len(sortedIngreDict)
@@ -229,7 +251,8 @@ class StatisticPipeline(object):
                     currName = sortedIngreDict[i][0]
                     jsonFormat[currName] = {}
                     jsonFormat[currName]['category'] = []
-                    jsonFormat[currName]['category'].append(recipes_spider.targetCategory)
+                    for category in sortedIngreDict[i][1]['category']:
+                        jsonFormat[currName]['category'].append(category)
                     jsonFormat[currName]['styles'] = []
                     jsonFormat[currName]['substitutions'] = {}
                     jsonFormat[currName]['substitutions']['to healthy'] = ""
@@ -238,7 +261,7 @@ class StatisticPipeline(object):
                     jsonFormat[currName]['substitutions']['to vegan'] = ""
                     jsonFormat[currName]['substitutions']['to vegetarian'] = ""
                 trueJson = json.dumps(jsonFormat)
-                with open("data/" + recipes_spider.targetCategory + "_formatted.json", "w") as file:
+                with open("data/final_formatted.json", "w") as file:
                     file.write(trueJson)
                 # Parse to json
             return item
