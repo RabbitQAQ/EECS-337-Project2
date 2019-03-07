@@ -7,11 +7,11 @@ baseUrlDict = {
     "italian": "https://www.allrecipes.com/recipes/723/world-cuisine/european/italian/?page=",
     "vegan": "https://www.allrecipes.com/recipes/1227/everyday-cooking/vegan/?page="
 }
-targetCategory = "vegan"
+targetCategory = "italian"
 
 class CategorySpider(Spider):
     pageCount = 1
-    maxCount = 5
+    maxCount = 25
     isFirstTime = True
 
     name = 'category_spider'
@@ -20,13 +20,13 @@ class CategorySpider(Spider):
     def parse(self, response):
         # clean the file
         if self.isFirstTime:
-            open("data/" + targetCategory + "_urls.txt", "w+").close()
+            open("data/" + targetCategory + "_urls_1000.txt", "w+").close()
             self.isFirstTime = False
         if (self.pageCount > self.maxCount):
             return
         recipesLinkList = response.xpath('//article[@class="fixed-recipe-card"]/div[@class="grid-card-image-container"]/a[contains(@href, "www.allrecipes.com/recipe")]/@href').extract()
         # write the file
-        with open("data/" + targetCategory + "_urls.txt", "a") as file:
+        with open("data/" + targetCategory + "_urls_1000.txt", "a") as file:
             for i in recipesLinkList:
                 file.write(i + "\n")
         self.pageCount += 1

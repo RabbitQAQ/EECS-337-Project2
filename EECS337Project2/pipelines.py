@@ -195,22 +195,27 @@ class IngredientProcessPipeline(object):
 class DirectionProcessPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item, Recipe):
-            directionList = item['rawDirectionList']
-            for direction in directionList:
-                pass
-            return item
+            with open("data/direction_corpus.txt", "a+") as file:
+                directionList = item['rawDirectionList']
+                for direction in directionList:
+                    sentences = nltk.sent_tokenize(direction)
+                    for sentence in sentences:
+                        file.write(sentence + "\n")
+                return item
         else:
             return item
 
 class StatisticPipeline(object):
-    count = 0
+    count = recipes_spider.RecipesSpider.startCount
     categoryCount = 0
     indexDict = recipes_spider.RecipesSpider.indexDict
     categoryList = recipes_spider.RecipesSpider.categoryList
     currCategory = categoryList[0]
-    maxIter = 100
+    maxIter = 500
     def process_item(self, item, spider):
         if isinstance(item, Recipe):
+            # Print progress
+            print("Progress: " + str(self.count) + " / " + str(recipes_spider.RecipesSpider.maxUrlCount))
             # Change category
             if self.categoryCount == self.indexDict[self.currCategory]:
                 nextIndex = self.categoryList.index(self.currCategory) + 1
@@ -243,13 +248,15 @@ class StatisticPipeline(object):
                 # Sort dict
                 sortedIngreDict = sorted(ingreDict.items(), key=lambda entry: entry[1]['count'], reverse=True)
                 jsonFormat = {}
-                if self.maxIter > len(sortedIngreDict):
-                    self.maxIter = len(sortedIngreDict)
-                else:
-                    self.maxIter = 100
+                self.maxIter = len(sortedIngreDict)
+                # if self.maxIter > len(sortedIngreDict):
+                #     self.maxIter = len(sortedIngreDict)
+                # else:
+                #     self.maxIter = 500
                 for i in range(0, self.maxIter):
-                    currName = sortedIngreDict[i][0]
+                    currName = sortedIngreDict[i][0].lower()
                     jsonFormat[currName] = {}
+                    jsonFormat[currName]['count'] = sortedIngreDict[i][1]['count']
                     jsonFormat[currName]['category'] = []
                     for category in sortedIngreDict[i][1]['category']:
                         jsonFormat[currName]['category'].append(category)
