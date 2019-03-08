@@ -5,7 +5,7 @@ from EECS337Project2.items import Recipe
 
 # RUN_MODE 0: test mode, add urls manually
 # RUN_MODE 1: statistic mode, read urls from text, count the ingredients number
-RUN_MODE = 1
+RUN_MODE = 0
 targetCategory = "vegetarian"
 
 class RecipesSpider(Spider):

@@ -7,9 +7,9 @@
 
 # Hard coded quantities, tools and actions
 import json
-
+import os
 import nltk
-
+from gensim.models import word2vec
 from nltk.tokenize import TweetTokenizer
 from EECS337Project2.items import Ingredient
 from EECS337Project2.items import Recipe
@@ -204,6 +204,121 @@ class DirectionProcessPipeline(object):
                 return item
         else:
             return item
+
+
+class SwapProcessPipeline(object):
+    def get_ingredient(self, old, database, cate, count, co):
+        model = word2vec.Word2Vec.load("model")
+        res = old.split()
+        if len(res) >= 2:
+            bigram = nltk.bigrams(res)
+
+            for big in bigram:
+                big1 = big[0] + '_' + big[1]
+                try:
+
+                    y1 = model.most_similar(big1, topn=100)
+
+                    for temp in y1:
+                        new = temp[0]
+                        new = new.replace("_", " ")
+                        if new in database:
+                            if database[new]["count"] >= 2:
+
+                                for category in database[new]["category"]:
+                                    length = len(database[new]["category"])
+                                    if (category == "vegetarian" or category =='vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
+                                        co += 1
+                                        return new
+
+                    return old
+
+                except:
+                    pass
+
+
+
+        else:
+            try:
+
+                y1 = model.most_similar(old, topn=100)
+
+                for temp in y1:
+                    new = temp[0]
+                    new = new.replace("_", " ")
+                    if new in database:
+                        if database[new]["count"] >= 2:
+
+
+                            for category in database[new]["category"]:
+                                length = len(database[new]["category"])
+                                if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
+                                    co +=1
+                                    return new
+
+                return old
+
+            except:
+                pass
+
+        return old
+
+
+    def tovegetarian(self, old_recipe, database):
+        co = 0
+        for i in range(len(old_recipe["ingredients"])):
+            temp = old_recipe["ingredients"][i]['name'].lower()
+
+            res = temp.split()
+            if temp not in database and len(res) > 1:
+                length = len(res)
+                for j in range(0, length):
+                    if res[length - j - 1] in database:
+                        temp = res[length - j - 1]
+                        break
+
+            if temp in database:
+                flag = 0
+                count = 0
+                for category in database[temp]["category"]:
+                    if database[temp]["category"][category] >= 3:
+                        count += 1
+                        if category == 'vegetarian' or category == 'vegan':
+                            flag = 1
+
+                if flag == 0 and count < 4:
+                    new_ingredient = self.get_ingredient(temp,database,'vegetarian', count,co)
+                    old_recipe["ingredients"][i]["name"] = new_ingredient
+
+        print (co)
+
+
+    def process_item(self, item, spider):
+        if isinstance(item, Recipe):
+            directionList = item['rawDirectionList']
+            for direction in directionList:
+                pass
+            #
+            # datapath = os.path.abspath(os.path.dirname(os.getcwd())) + '/data'
+            with open("./data/final_formatted.json") as json_data:
+                data = json.load(json_data)
+            pass
+
+            # if transferto == 'vegetarain':
+            new_recipe = self.tovegetarian(item, data)
+
+            return item
+        else:
+            return item
+
+
+
+
+
+
+
+
+
 
 class StatisticPipeline(object):
     count = recipes_spider.RecipesSpider.startCount
