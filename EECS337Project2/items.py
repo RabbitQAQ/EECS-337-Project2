@@ -20,6 +20,12 @@ class Recipe(scrapy.Item):
     # steps that each consist of ingredients, tools, methods, and times; list of Step (defined below)
     steps = scrapy.Field()
 
+    toChinese = scrapy.Field()
+    toItalian = scrapy.Field()
+    toVegetarian = scrapy.Field()
+    toVegan = scrapy.Field()
+    toHealthy = scrapy.Field()
+
 class Ingredient(scrapy.Item):
     name = scrapy.Field()
     quantityAndMeasurement = scrapy.Field()

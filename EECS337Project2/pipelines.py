@@ -9,6 +9,7 @@
 import json
 import os
 import nltk
+import copy
 from gensim.models import word2vec
 from nltk.tokenize import TweetTokenizer
 from EECS337Project2.items import Ingredient
@@ -195,12 +196,15 @@ class IngredientProcessPipeline(object):
 class DirectionProcessPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item, Recipe):
-            with open("data/direction_corpus.txt", "a+") as file:
+            try:
+                item['steps'] = []
                 directionList = item['rawDirectionList']
                 for direction in directionList:
                     sentences = nltk.sent_tokenize(direction)
-                    for sentence in sentences:
-                        file.write(sentence + "\n")
+                    for i in range(0, len(sentences)):
+                        item['steps'].append(sentences[i])
+                return item
+            except:
                 return item
         else:
             return item
@@ -421,22 +425,73 @@ class SwapProcessPipeline(object):
                 data = json.load(json_data)
             pass
 
-            towhat = 'chinese'
-            # new_recipe_1 = self.tovegetarian(item, data)
-            new_recipe_2 = self.tonew(item, data, towhat)
+            toChineseRecipe = copy.deepcopy(item)
+            toItalianRecipe = copy.deepcopy(item)
+            toHealthyRecipe = copy.deepcopy(item)
+            toVegetarianRecipe = copy.deepcopy(item)
+            toVeganRecipe = copy.deepcopy(item)
+            self.tonew(toChineseRecipe, data, 'chinese')
+            self.tonew(toItalianRecipe, data, 'italian')
+            self.tonew(toHealthyRecipe, data, 'healthy')
+            self.tovegetarian(toVegetarianRecipe, data)
+            self.tonew(toVeganRecipe, data, 'vegan')
+            item['toChinese'] = toChineseRecipe
+            item['toItalian'] = toItalianRecipe
+            item['toHealthy'] = toHealthyRecipe
+            item['toVegetarian'] = toVegetarianRecipe
+            item['toVegan'] = toVeganRecipe
+
 
             return item
         else:
             return item
 
+class UIPipeline(object):
+    def printRecipe(self, item):
+        print("++++++++++++++ Recipes +++++++++++++++")
+        print("======== Ingredients =======")
+        for i in range(0, len(item['ingredients'])):
+            currIngredient = item['ingredients'][i]
+            print(str(i) + ". " + currIngredient['descriptor'] + ' ' + currIngredient['name'])
+            print("Quantity and Measurement: " + currIngredient["quantityAndMeasurement"])
+            print("Preparation: " + currIngredient["preparation"])
+            print("Method: " + str(currIngredient["method"]))
+            print("Tool: " + str(currIngredient["tool"]))
+        print("======== Steps =======")
+        for i in range(0, len(item['steps'])):
+            print(str(i) + ". " + item['steps'][i])
+        print("========== End ==========")
+    def process_item(self, item, spider):
+        if isinstance(item, Recipe):
+            # Show Origin Recipe
+            self.printRecipe(item)
+            while True:
+                print("Select the transformation you wanna do:")
+                print("0. To Vegetarian")
+                print("1. To Vegan")
+                print("2. To Healthy")
+                print("3. To Chinese")
+                print("4. To Italian")
+                print("q. quit")
+                selection = input("Your choice: ")
+                if selection == '0':
+                    self.printRecipe(item["toVegetarian"])
+                elif selection == '1':
+                    self.printRecipe(item["toVegan"])
+                elif selection == '2':
+                    self.printRecipe(item["toHealthy"])
+                elif selection == '3':
+                    self.printRecipe(item["toChinese"])
+                elif selection == '4':
+                    self.printRecipe(item["toItalian"])
+                elif selection == 'q':
+                    break
+                else:
+                    print("Invalid Input. Try Again.")
 
-
-
-
-
-
-
-
+            return item
+        else:
+            return item
 
 class StatisticPipeline(object):
     count = recipes_spider.RecipesSpider.startCount
