@@ -207,7 +207,7 @@ class DirectionProcessPipeline(object):
 
 
 class SwapProcessPipeline(object):
-    def get_ingredient(self, old, database, cate, count, co):
+    def get_ingredient(self, old, database, cate):
         model = word2vec.Word2Vec.load("model")
         res = old.split()
         if len(res) >= 2:
@@ -218,25 +218,19 @@ class SwapProcessPipeline(object):
                 try:
 
                     y1 = model.most_similar(big1, topn=100)
-
                     for temp in y1:
                         new = temp[0]
                         new = new.replace("_", " ")
                         if new in database:
-                            if database[new]["count"] >= 2:
-
+                            if database[new]["count"] >= 8:
                                 for category in database[new]["category"]:
                                     length = len(database[new]["category"])
-                                    if (category == "vegetarian" or category =='vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
-                                        co += 1
+                                    if (category == cate) and database[new]["category"][category] > database[new]["count"] / 7:
                                         return new
-
                     return old
 
                 except:
                     pass
-
-
 
         else:
             try:
@@ -247,25 +241,117 @@ class SwapProcessPipeline(object):
                     new = temp[0]
                     new = new.replace("_", " ")
                     if new in database:
-                        if database[new]["count"] >= 2:
-
-
+                        if database[new]["count"] >= 8:
                             for category in database[new]["category"]:
                                 length = len(database[new]["category"])
-                                if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
-                                    co +=1
+                                if (category == cate) and database[new]["category"][category] > database[new]["count"] / 7:
+
                                     return new
-
                 return old
-
             except:
                 pass
 
         return old
 
 
+
+    def get_ingredient_vegetarian(self, old, database):
+        model = word2vec.Word2Vec.load("model")
+        res = old.split()
+        if len(res) >= 2:
+            bigram = nltk.bigrams(res)
+
+            for big in bigram:
+                big1 = big[0] + '_' + big[1]
+                try:
+                    y1 = model.most_similar(big1, topn=100)
+
+                    for temp in y1:
+                        new = temp[0]
+                        new = new.replace("_", " ")
+                        if new in database:
+                            if database[new]["count"] >= 9:
+
+                                for category in database[new]["category"]:
+                                    length = len(database[new]["category"])
+                                    if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
+
+                                        return new
+                    return old
+
+                except:
+                    pass
+
+        else:
+            try:
+
+                y1 = model.most_similar(old, topn=100)
+
+                for temp in y1:
+                    new = temp[0]
+                    new = new.replace("_", " ")
+                    if new in database:
+                        if database[new]["count"] >= 9:
+                            for category in database[new]["category"]:
+                                length = len(database[new]["category"])
+                                if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
+
+                                    return new
+                return old
+            except:
+                pass
+
+        return old
+
+    def get_seasoning(self, old, database, cate):
+        model = word2vec.Word2Vec.load("model")
+        res = old.split()
+        if len(res) >= 2:
+            bigram = nltk.bigrams(res)
+
+            for big in bigram:
+                big1 = big[0] + '_' + big[1]
+                try:
+
+                    y1 = model.most_similar(big1, topn=100)
+                    for temp in y1:
+                        new = temp[0]
+                        new = new.replace("_", " ")
+                        if new in database:
+                            if database[new]["count"] >= 5:
+                                for category in database[new]["category"]:
+                                    length = len(database[new]["category"])
+                                    if (category == cate) and database[new]["category"][category] > database[new]["count"] / 2 and length >= 5:
+                                        return new
+                    return old
+
+                except:
+                    pass
+
+        else:
+            try:
+
+                y1 = model.most_similar(old, topn=100)
+
+                for temp in y1:
+                    new = temp[0]
+                    new = new.replace("_", " ")
+                    if new in database:
+                        if database[new]["count"] >= 5:
+                            for category in database[new]["category"]:
+                                length = len(database[new]["category"])
+                                if (category == cate) and database[new]["category"][category] > database[new]["count"] /2.5 and length >= 5:
+                                    return new
+                return old
+            except:
+                pass
+
+        return old
+
+
+
     def tovegetarian(self, old_recipe, database):
-        co = 0
+
         for i in range(len(old_recipe["ingredients"])):
             temp = old_recipe["ingredients"][i]['name'].lower()
 
@@ -286,11 +372,42 @@ class SwapProcessPipeline(object):
                         if category == 'vegetarian' or category == 'vegan':
                             flag = 1
 
-                if flag == 0 and count < 4:
-                    new_ingredient = self.get_ingredient(temp,database,'vegetarian', count,co)
+                if flag == 0 and count <= 4:
+                    new_ingredient = self.get_ingredient_vegetarian(temp, database)
                     old_recipe["ingredients"][i]["name"] = new_ingredient
 
-        print (co)
+    def tonew(self, old_recipe, database, cate):
+
+        for i in range(len(old_recipe["ingredients"])):
+            temp = old_recipe["ingredients"][i]['name'].lower()
+
+            res = temp.split()
+            if temp not in database and len(res) > 1:
+                length = len(res)
+                for j in range(0, length):
+                    if res[length - j - 1] in database:
+                        temp = res[length - j - 1]
+                        break
+
+            if temp in database:
+                flag = 0
+                count = 0
+                for category in database[temp]["category"]:
+                    if database[temp]["category"][category] >= 3:
+                        count += 1
+                        if category == cate:
+                            flag = 1
+
+                if flag == 0 and count <= 4:
+                    new_ingredient = self.get_ingredient(temp, database, cate)
+                    old_recipe["ingredients"][i]["name"] = new_ingredient
+
+                if count >= 5:
+                    if database[temp]["category"][category] / database[temp]["count"] < 0.25:
+                        new_ingredient = self.get_seasoning(temp, database, cate)
+                        old_recipe["ingredients"][i]["name"] = new_ingredient
+
+
 
 
     def process_item(self, item, spider):
@@ -304,8 +421,9 @@ class SwapProcessPipeline(object):
                 data = json.load(json_data)
             pass
 
-            # if transferto == 'vegetarain':
-            new_recipe = self.tovegetarian(item, data)
+            towhat = 'chinese'
+            # new_recipe_1 = self.tovegetarian(item, data)
+            new_recipe_2 = self.tonew(item, data, towhat)
 
             return item
         else:
