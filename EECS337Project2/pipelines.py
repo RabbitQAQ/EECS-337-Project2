@@ -313,8 +313,7 @@ class SwapProcessPipeline(object):
                                 if database[new]["count"] >= 5:
                                     for category in database[new]["category"]:
                                         length = len(database[new]["category"])
-                                        if (category == cate) and database[new]["category"][category] > database[new][
-                                            "count"] / 2 and length >= 5:
+                                        if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] > database[new]["count"] / 2 and length >= 5:
                                             return new
 
 
