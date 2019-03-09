@@ -231,10 +231,28 @@ class SwapProcessPipeline(object):
                                     length = len(database[new]["category"])
                                     if (category == cate) and database[new]["category"][category] > database[new]["count"] / 7:
                                         return new
-                    return old
+
 
                 except:
-                    pass
+                    big1 = big[1]
+                    try:
+
+                        y1 = model.most_similar(big1, topn=100)
+                        for temp in y1:
+                            new = temp[0]
+                            new = new.replace("_", " ")
+                            if new in database:
+                                if database[new]["count"] >= 5:
+                                    for category in database[new]["category"]:
+                                        length = len(database[new]["category"])
+                                        if (category == cate) and database[new]["category"][category] > database[new][
+                                            "count"] / 2 and length >= 5:
+                                            return new
+
+
+                    except:
+                        pass
+
 
         else:
             try:
@@ -251,7 +269,7 @@ class SwapProcessPipeline(object):
                                 if (category == cate) and database[new]["category"][category] > database[new]["count"] / 7:
 
                                     return new
-                return old
+
             except:
                 pass
 
@@ -281,10 +299,27 @@ class SwapProcessPipeline(object):
                                     if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
 
                                         return new
-                    return old
+
 
                 except:
-                    pass
+                    big1 = big[1]
+                    try:
+
+                        y1 = model.most_similar(big1, topn=100)
+                        for temp in y1:
+                            new = temp[0]
+                            new = new.replace("_", " ")
+                            if new in database:
+                                if database[new]["count"] >= 5:
+                                    for category in database[new]["category"]:
+                                        length = len(database[new]["category"])
+                                        if (category == cate) and database[new]["category"][category] > database[new][
+                                            "count"] / 2 and length >= 5:
+                                            return new
+
+
+                    except:
+                        pass
 
         else:
             try:
@@ -301,13 +336,13 @@ class SwapProcessPipeline(object):
                                 if (category == "vegetarian" or category == 'vegan') and database[new]["category"][category] >= database[new]["count"] / 8:
 
                                     return new
-                return old
+
             except:
                 pass
 
         return old
 
-    def get_seasoning(self, old, database, cate):
+    def get_seasoning(self, old, database, cate, seasoning_list):
         model = word2vec.Word2Vec.load("model")
         res = old.split()
         if len(res) >= 2:
@@ -326,11 +361,33 @@ class SwapProcessPipeline(object):
                                 for category in database[new]["category"]:
                                     length = len(database[new]["category"])
                                     if (category == cate) and database[new]["category"][category] > database[new]["count"] / 2 and length >= 5:
+                                        if new in seasoning_list:
+                                            continue
                                         return new
-                    return old
+
 
                 except:
-                    pass
+                    big1 = big[1]
+                    try:
+
+                        y1 = model.most_similar(big1, topn=100)
+                        for temp in y1:
+                            new = temp[0]
+                            new = new.replace("_", " ")
+                            if new in database:
+                                if database[new]["count"] >= 5:
+                                    for category in database[new]["category"]:
+                                        length = len(database[new]["category"])
+                                        if (category == cate) and database[new]["category"][category] > database[new]["count"] / 2 and length >= 5:
+                                            if new in seasoning_list:
+                                                continue
+                                            return new
+
+
+                    except:
+                        pass
+
+
 
         else:
             try:
@@ -345,8 +402,10 @@ class SwapProcessPipeline(object):
                             for category in database[new]["category"]:
                                 length = len(database[new]["category"])
                                 if (category == cate) and database[new]["category"][category] > database[new]["count"] /2.5 and length >= 5:
+                                    if new in seasoning_list:
+                                        continue
                                     return new
-                return old
+
             except:
                 pass
 
@@ -356,16 +415,24 @@ class SwapProcessPipeline(object):
 
     def tovegetarian(self, old_recipe, database):
 
+
         for i in range(len(old_recipe["ingredients"])):
             temp = old_recipe["ingredients"][i]['name'].lower()
 
             res = temp.split()
+            if len(res) > 3:
+                bigram = nltk.bigrams(res)
+                for big in bigram:
+                    temp = big[0] + ' ' + big[1]
+
+
             if temp not in database and len(res) > 1:
                 length = len(res)
                 for j in range(0, length):
                     if res[length - j - 1] in database:
                         temp = res[length - j - 1]
                         break
+
 
             if temp in database:
                 flag = 0
@@ -379,13 +446,26 @@ class SwapProcessPipeline(object):
                 if flag == 0 and count <= 4:
                     new_ingredient = self.get_ingredient_vegetarian(temp, database)
                     old_recipe["ingredients"][i]["name"] = new_ingredient
+                    for each in old_recipe["steps"]:
+                        each.replace(old_recipe["ingredients"][i]["name"], new_ingredient)
+
+
+
 
     def tonew(self, old_recipe, database, cate):
-
+        seasoning_list = []
         for i in range(len(old_recipe["ingredients"])):
             temp = old_recipe["ingredients"][i]['name'].lower()
 
             res = temp.split()
+            if len(res) > 3:
+                bigram = nltk.bigrams(res)
+                for big in bigram:
+
+                    temp = big[0] + ' ' + big[1]
+
+
+
             if temp not in database and len(res) > 1:
                 length = len(res)
                 for j in range(0, length):
@@ -408,8 +488,13 @@ class SwapProcessPipeline(object):
 
                 if count >= 5:
                     if database[temp]["category"][category] / database[temp]["count"] < 0.25:
-                        new_ingredient = self.get_seasoning(temp, database, cate)
+                        new_ingredient = self.get_seasoning(temp, database, cate,seasoning_list)
+                        seasoning_list.append(new_ingredient)
                         old_recipe["ingredients"][i]["name"] = new_ingredient
+                        for each in old_recipe["steps"]:
+                            each.replace(old_recipe["ingredients"][i]["name"],new_ingredient)
+
+
 
 
 
