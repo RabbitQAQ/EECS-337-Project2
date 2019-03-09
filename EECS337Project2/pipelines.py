@@ -481,11 +481,11 @@ class SwapProcessPipeline(object):
                         if category == cate:
                             flag = 1
 
-                if flag == 0 and count <= 4:
+                if flag == 0 and count <= 5:
                     new_ingredient = self.get_ingredient(temp, database, cate)
                     old_recipe["ingredients"][i]["name"] = new_ingredient
 
-                if count >= 5:
+                if (count == 5 and flag == 1) or count == 6:
                     if database[temp]["category"][category] / database[temp]["count"] < 0.25:
                         new_ingredient = self.get_seasoning(temp, database, cate,seasoning_list)
                         seasoning_list.append(new_ingredient)
