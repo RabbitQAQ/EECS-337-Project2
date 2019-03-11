@@ -249,7 +249,7 @@ class DirectionProcessPipeline(object):
                         for chunk in step_doc.noun_chunks:
                             if (chunk.root.text.lower() not in methodToTools.values()):
                                 if (not isTimeNounChunk(
-                                        chunk.text.lower()) and not chunk.text.lower() in cooking_verbs):
+                                        chunk.text.lower()) and not chunk.root.text.lower() in cooking_verbs):
                                     currIngredients.append(chunk.text)
                             else:
                                 if (chunk.root.text.lower() not in currTools):
