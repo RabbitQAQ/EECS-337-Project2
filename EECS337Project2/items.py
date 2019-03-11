@@ -41,3 +41,6 @@ class Step(scrapy.Item):
     tools = scrapy.Field()
     # methods used in this recipe, a list of string
     methods = scrapy.Field()
+    # time for this step, a string
+    stepTime = scrapy.Field()
+

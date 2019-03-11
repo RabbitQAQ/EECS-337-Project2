@@ -13,21 +13,24 @@ import copy
 from gensim.models import word2vec
 from nltk.tokenize import TweetTokenizer
 from EECS337Project2.items import Ingredient
+from EECS337Project2.items import Step
 from EECS337Project2.items import Recipe
 from EECS337Project2.spiders import recipes_spider
+import spacy
+
 ingreDict = {}
 tools = []
 methodToTools = {
-    'chopped': 'knife',
+    'chop': 'knife',
     'cut': 'knife',
     'julienne': 'knife',
-    'minced': 'knife',
-    'diced': 'knife',
-    'sliced': 'knife',
+    'mince': 'knife',
+    'dice': 'knife',
+    'slice': 'knife',
     'stir': 'spoon',
     'fold': 'spoon',
-    'glazed': 'spoon',
-    'drizzled': 'spoon',
+    'glaze': 'spoon',
+    'drizzle': 'spoon',
     'heated': 'oven',
     'fry': 'pan',
     'baste': 'baster',
@@ -37,7 +40,9 @@ methodToTools = {
     'whisk': 'whisk',
     'marinate': 'bowl',
     'shred': 'food processor',
-    'peeled': 'peeler',
+    'peel': 'peeler',
+    'mix' : 'cooker',
+    'cover' : 'lid'
 }
 quantity = {
     'tsp': 'teaspoon',
@@ -64,6 +69,9 @@ acceptableNouns = ['NN', 'NNP', 'NNS', 'IN']
 
 # Tokenizer
 twTokenizer = TweetTokenizer()
+nlp = spacy.load('en')
+cooking_verbs = {'arrange', 'baste', 'beat', 'blend', 'brown', 'build', 'bury', 'carve', 'check', 'chop', 'close', 'cool', 'correct', 'cover', 'crumple', 'cut', 'decorate', 'discard', 'divide', 'drape', 'drop', 'dry', 'film', 'fold', 'follow', 'form', 'force', 'glaze', 'insert', 'lay', 'leave', 'lift', 'make', 'melt', 'mince', 'mix', 'moisten', 'mound', 'open', 'pack', 'paint', 'pierce', 'pour', 'prepare', 'press', 'prick', 'pull', 'puree', 'push', 'quarter', 'raise', 'reduce', 'refresh', 'reheat', 'replace', 'return', 'ring', 'roast', 'roll', 'salt', 'saute', 'scatter', 'scoop', 'scrape', 'scrub', 'season', 'separate', 'set', 'settle', 'shave', 'simmer', 'skim', 'slice', 'slide', 'slip', 'slit', 'smear', 'soak', 'spoon', 'spread', 'sprinkle', 'stir', 'strain', 'strew', 'stuff', 'surround', 'taste', 'thin', 'tie', 'tilt', 'tip', 'top', 'toss', 'trim', 'turn', 'twist', 'warm', 'wilt', 'wind', 'wrap'}
+time_noun = ['time', 'time','while', 'minute','seconds','hour']
 
 # Initial variables that may use in other pipelines
 class InitPipeline(object):
@@ -192,6 +200,15 @@ class IngredientProcessPipeline(object):
         else:
             return item
 
+def isTimeNounChunk(text):
+    for noun in time_noun:
+        if noun in text.lower():
+            return True
+
+def preprocess(direction):
+    direction = direction.replace('season ', 'seasoning ').replace('cover ', 'covering ')
+    return direction
+
 # Pipelines that process raw direction data into structural object
 class DirectionProcessPipeline(object):
     def process_item(self, item, spider):
@@ -199,10 +216,51 @@ class DirectionProcessPipeline(object):
             try:
                 item['steps'] = []
                 directionList = item['rawDirectionList']
+                # for direction in directionList:
+                #     sentences = nltk.sent_tokenize(direction)
+                #     for i in range(0, len(sentences)):
+                #         item['steps'].append(sentences[i])
+
                 for direction in directionList:
-                    sentences = nltk.sent_tokenize(direction)
-                    for i in range(0, len(sentences)):
-                        item['steps'].append(sentences[i])
+
+                    sentences = nlp(preprocess(direction.lower()))
+
+                    for step_sentence in sentences.sents:
+                        # item['steps'].append(sentences[i])
+                        tmp_step = Step()
+                        # ingredient | tools | methods
+                        # posIngre = nltk.pos_tag(twTokenizer.tokenize(step_sentence))
+                        step_doc = nlp(step_sentence.text)
+                        currIngredients = []
+                        currTools = []
+                        currMethods = []
+                        currTime = []
+
+                        for ent in step_doc.ents:
+                            if (ent.label_ == 'TIME'):
+                                currTime.append(ent.text)
+
+                        for token in step_doc:
+                            if (token.pos_ == 'VERB'):
+                                if (token.lemma_ in cooking_verbs):
+                                    currMethods.append(token.lemma_)
+                                    currTools.append(methodToTools.get(token.lemma_))
+
+                        for chunk in step_doc.noun_chunks:
+                            if (chunk.root.text.lower() not in methodToTools.values()):
+                                if (not isTimeNounChunk(
+                                        chunk.text.lower()) and not chunk.text.lower() in cooking_verbs):
+                                    currIngredients.append(chunk.text)
+                            else:
+                                if (chunk.root.text.lower() not in currTools):
+                                    currTools.append(chunk.text)
+
+                        tmp_step['ingredient'] = currIngredients
+                        tmp_step['tools'] = currTools
+                        tmp_step['methods'] = currMethods
+                        tmp_step['stepTime'] = currTime
+
+                        item['steps'].append(tmp_step)
                 return item
             except:
                 return item
