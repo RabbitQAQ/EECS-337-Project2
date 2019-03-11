@@ -10,7 +10,7 @@ targetCategory = "vegetarian"
 
 class RecipesSpider(Spider):
     name = 'recipes_spider'
-    start_urls = ["https://www.allrecipes.com/recipe/73634/colleens-slow-cooker-jambalaya/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%208"]
+    start_urls = ["https://www.allrecipes.com/recipe/8722/mexican-chicken-i/?clickId=right%20rail0&internalSource=rr_feed_recipe_sb&referringId=73634%20referringContentType=recipe"]
     startCount = 527
     maxUrlCount = 0
     urlCount = 0

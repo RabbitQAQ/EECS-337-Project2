@@ -31,7 +31,7 @@ methodToTools = {
     'fold': 'spoon',
     'glaze': 'spoon',
     'drizzle': 'spoon',
-    'heated': 'oven',
+    'bake': 'oven',
     'fry': 'pan',
     'baste': 'baster',
     'sift': 'colander',
@@ -42,7 +42,10 @@ methodToTools = {
     'shred': 'food processor',
     'peel': 'peeler',
     'mix' : 'cooker',
-    'cover' : 'lid'
+    'cover' : 'lid',
+    'preheat': 'oven',
+    'arrange':'dish',
+    'combine': 'bowl'
 }
 quantity = {
     'tsp': 'teaspoon',
@@ -70,7 +73,7 @@ acceptableNouns = ['NN', 'NNP', 'NNS', 'IN']
 # Tokenizer
 twTokenizer = TweetTokenizer()
 nlp = spacy.load('en')
-cooking_verbs = {'arrange', 'baste', 'beat', 'blend', 'brown', 'build', 'bury', 'carve', 'check', 'chop', 'close', 'cool', 'correct', 'cover', 'crumple', 'cut', 'decorate', 'discard', 'divide', 'drape', 'drop', 'dry', 'film', 'fold', 'follow', 'form', 'force', 'glaze', 'insert', 'lay', 'leave', 'lift', 'make', 'melt', 'mince', 'mix', 'moisten', 'mound', 'open', 'pack', 'paint', 'pierce', 'pour', 'prepare', 'press', 'prick', 'pull', 'puree', 'push', 'quarter', 'raise', 'reduce', 'refresh', 'reheat', 'replace', 'return', 'ring', 'roast', 'roll', 'salt', 'saute', 'scatter', 'scoop', 'scrape', 'scrub', 'season', 'separate', 'set', 'settle', 'shave', 'simmer', 'skim', 'slice', 'slide', 'slip', 'slit', 'smear', 'soak', 'spoon', 'spread', 'sprinkle', 'stir', 'strain', 'strew', 'stuff', 'surround', 'taste', 'thin', 'tie', 'tilt', 'tip', 'top', 'toss', 'trim', 'turn', 'twist', 'warm', 'wilt', 'wind', 'wrap'}
+cooking_verbs = {'arrange', 'bake', 'baste', 'beat', 'blend', 'brown', 'build', 'bury', 'carve', 'check', 'chop', 'close', 'combine','cool', 'correct', 'cover', 'crumple', 'cut', 'decorate', 'discard', 'divide', 'drape', 'drop', 'dry', 'film', 'fold', 'follow', 'form', 'force', 'glaze', 'insert', 'lay', 'leave', 'lift', 'make', 'melt', 'mince', 'mix', 'moisten', 'mound', 'open', 'pack', 'paint', 'pierce', 'pour', 'preheat','prepare', 'press', 'prick', 'pull', 'puree', 'push', 'quarter', 'raise', 'reduce', 'refresh', 'reheat', 'replace', 'return', 'ring', 'roast', 'roll', 'salt', 'saute', 'scatter', 'scoop', 'scrape', 'scrub', 'season', 'separate', 'set', 'serve','settle', 'shave', 'simmer', 'skim', 'slice', 'slide', 'slip', 'slit', 'smear', 'soak', 'spoon', 'spread', 'sprinkle', 'stir', 'strain', 'strew', 'stuff', 'surround', 'taste', 'thin', 'tie', 'tilt', 'tip', 'top', 'toss', 'trim', 'turn', 'twist', 'warm', 'wilt', 'wind', 'wrap'}
 time_noun = ['time', 'time','while', 'minute','seconds','hour']
 
 # Initial variables that may use in other pipelines
@@ -206,7 +209,7 @@ def isTimeNounChunk(text):
             return True
 
 def preprocess(direction):
-    direction = direction.replace('season ', 'seasoning ').replace('cover ', 'covering ')
+    direction = direction.replace('season ', 'seasoning ').replace('cover ', 'covering ').replace('bake ','baked ')
     return direction
 
 # Pipelines that process raw direction data into structural object
