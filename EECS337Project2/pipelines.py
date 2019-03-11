@@ -39,7 +39,6 @@ methodToTools = {
     'grate': 'grater',
     'whisk': 'whisk',
     'marinate': 'bowl',
-    'shred': 'food processor',
     'peel': 'peeler',
     'mix' : 'cooker',
     'cover' : 'lid',
@@ -47,6 +46,7 @@ methodToTools = {
     'arrange':'dish',
     'combine': 'bowl'
 }
+
 quantity = {
     'tsp': 'teaspoon',
     'c': 'cup',
@@ -73,7 +73,8 @@ acceptableNouns = ['NN', 'NNP', 'NNS', 'IN']
 # Tokenizer
 twTokenizer = TweetTokenizer()
 nlp = spacy.load('en')
-cooking_verbs = {'arrange', 'bake', 'baste', 'beat', 'blend', 'brown', 'build', 'bury', 'carve', 'check', 'chop', 'close', 'combine','cool', 'correct', 'cover', 'crumple', 'cut', 'decorate', 'discard', 'divide', 'drape', 'drop', 'dry', 'film', 'fold', 'follow', 'form', 'force', 'glaze', 'insert', 'lay', 'leave', 'lift', 'make', 'melt', 'mince', 'mix', 'moisten', 'mound', 'open', 'pack', 'paint', 'pierce', 'pour', 'preheat','prepare', 'press', 'prick', 'pull', 'puree', 'push', 'quarter', 'raise', 'reduce', 'refresh', 'reheat', 'replace', 'return', 'ring', 'roast', 'roll', 'salt', 'saute', 'scatter', 'scoop', 'scrape', 'scrub', 'season', 'separate', 'set', 'serve','settle', 'shave', 'simmer', 'skim', 'slice', 'slide', 'slip', 'slit', 'smear', 'soak', 'spoon', 'spread', 'sprinkle', 'stir', 'strain', 'strew', 'stuff', 'surround', 'taste', 'thin', 'tie', 'tilt', 'tip', 'top', 'toss', 'trim', 'turn', 'twist', 'warm', 'wilt', 'wind', 'wrap'}
+cooking_tools = {'processor','knife', 'spoon', 'oven','pan', 'baster','colander','hand mixer','grater','whisk','bowl','food processor','peeler', 'cooker', 'lid','dish','skillet','fork'}
+cooking_verbs = {'arrange', 'bake', 'baste', 'beat', 'blend', 'brown', 'build', 'bury', 'carve', 'check', 'chop', 'close', 'combine','cook','cool', 'correct', 'cover', 'crumple', 'cut', 'decorate', 'discard', 'divide', 'drape', 'drop', 'dry', 'film', 'fold', 'follow', 'form', 'force', 'glaze', 'heat','insert', 'lay', 'leave', 'lift', 'make', 'melt', 'mince', 'mix', 'moisten', 'mound', 'open', 'pack', 'paint', 'pierce', 'pour', 'preheat','prepare', 'press', 'prick', 'pull', 'puree', 'push', 'quarter', 'raise', 'reduce', 'refresh', 'reheat', 'remove','replace', 'return', 'ring', 'roast', 'roll', 'salt', 'saute', 'scatter', 'scoop', 'scrape', 'scrub', 'season', 'separate', 'set', 'serve','settle', 'shave', 'shred','simmer', 'skim', 'slice', 'slide', 'slip', 'slit', 'smear', 'soak', 'spoon', 'spread', 'sprinkle', 'stir', 'strain', 'strew', 'stuff', 'surround', 'taste', 'thin', 'tie', 'tilt', 'tip', 'top', 'toss', 'transfer', 'trim', 'turn', 'twist', 'warm', 'wilt', 'wind', 'wrap'}
 time_noun = ['time', 'time','while', 'minute','seconds','hour']
 
 # Initial variables that may use in other pipelines
@@ -206,14 +207,27 @@ class IngredientProcessPipeline(object):
         else:
             return item
 
-def isTimeNounChunk(text):
+def isTimeNounChunk(chunkText):
+    isTimeNounChunk_ = False
     for noun in time_noun:
-        if noun in text.lower():
-            return True
+        if noun in chunkText.lower():
+            isTimeNounChunk_ = True
+    return isTimeNounChunk_
 
 def preprocess(direction):
-    direction = direction.replace('season ', 'seasoning ').replace('cover ', 'covering ').replace('bake ','baked ')
+    direction = direction.replace('season ', 'seasoning ').replace('cover ', 'covering ').replace('bake ','baked ').replace('heat ', 'heated ').replace('transfer ', 'transferred ').replace('discard ', 'discarded ').replace('shred ', 'shredded ')
     return direction
+
+def isCookingTool(chunkText):
+    if(chunkText in methodToTools.values() or chunkText in cooking_tools):
+        return True
+    else:
+        chunk_doc = nlp(chunkText)
+        for token in chunk_doc:
+            if (token.lemma_ in methodToTools.values() or token.lemma_ in cooking_tools):
+                return True
+            else:
+                return False
 
 # Pipelines that process raw direction data into structural object
 class DirectionProcessPipeline(object):
@@ -222,13 +236,12 @@ class DirectionProcessPipeline(object):
             try:
                 item['steps'] = []
                 directionList = item['rawDirectionList']
-
                 for direction in directionList:
 
                     sentences = nlp(preprocess(direction.lower()))
 
                     for step_sentence in sentences.sents:
-                        # item['steps'].append(sentences[i])
+                        # item['steps'].append(sentences[tool])
                         tmp_step = Step()
                         # ingredient | tools | methods
                         # posIngre = nltk.pos_tag(twTokenizer.tokenize(step_sentence))
@@ -249,7 +262,7 @@ class DirectionProcessPipeline(object):
                                     currTools.append(methodToTools.get(token.lemma_))
 
                         for chunk in step_doc.noun_chunks:
-                            if (chunk.root.text.lower() not in methodToTools.values()):
+                            if (not isCookingTool(chunk.root.text.lower())):
                                 if (not isTimeNounChunk(
                                         chunk.text.lower()) and not chunk.root.text.lower() in cooking_verbs):
                                     currIngredients.append(chunk.text)
@@ -258,7 +271,7 @@ class DirectionProcessPipeline(object):
                                     currTools.append(chunk.text)
 
                         tmp_step['ingredient'] = currIngredients
-                        tmp_step['tools'] = currTools
+                        tmp_step['tools'] = [tool for tool in currTools if tool is not None]
                         tmp_step['methods'] = currMethods
                         tmp_step['stepTime'] = currTime
 
