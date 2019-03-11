@@ -25,6 +25,8 @@ class Recipe(scrapy.Item):
     toVegetarian = scrapy.Field()
     toVegan = scrapy.Field()
     toHealthy = scrapy.Field()
+    fromHealthy = scrapy.Field()
+    fromVegetarian = scrapy.Field()
 
 class Ingredient(scrapy.Item):
     name = scrapy.Field()

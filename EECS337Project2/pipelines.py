@@ -189,6 +189,9 @@ class IngredientProcessPipeline(object):
                                 currTool.append(methodToTools[knownMethod])
 
                 # build ingredient object
+                if currName.strip() == '':
+                    currName = currPreparation
+                    currPreparation = ""
                 tmpIngredient['name'] = currName
                 tmpIngredient['quantityAndMeasurement'] = currQuent
                 tmpIngredient['descriptor'] = currDescriptor
@@ -214,15 +217,11 @@ def preprocess(direction):
 
 # Pipelines that process raw direction data into structural object
 class DirectionProcessPipeline(object):
-    def process_item(self, item, spider):
+    def parseDirections(self, item):
         if isinstance(item, Recipe):
             try:
                 item['steps'] = []
                 directionList = item['rawDirectionList']
-                # for direction in directionList:
-                #     sentences = nltk.sent_tokenize(direction)
-                #     for i in range(0, len(sentences)):
-                #         item['steps'].append(sentences[i])
 
                 for direction in directionList:
 
@@ -267,6 +266,20 @@ class DirectionProcessPipeline(object):
                 return item
             except:
                 return item
+        else:
+            return item
+
+    def process_item(self, item, spider):
+        if isinstance(item, Recipe):
+            self.parseDirections(item)
+            self.parseDirections(item['toItalian'])
+            self.parseDirections(item['toChinese'])
+            self.parseDirections(item['toVegan'])
+            self.parseDirections(item['toHealthy'])
+            self.parseDirections(item['fromHealthy'])
+            self.parseDirections(item['toVegetarian'])
+            self.parseDirections(item['fromVegetarian'])
+            return item
         else:
             return item
 
@@ -505,8 +518,12 @@ class SwapProcessPipeline(object):
 
                 if flag == 0 and count <= 4:
                     new_ingredient = self.get_ingredient_vegetarian(temp, database)
-                    old_recipe["ingredients"][i]["name"] = new_ingredient
-                    for each in old_recipe["steps"]:
+                    if (old_recipe["ingredients"][i]["name"] == new_ingredient):
+                        old_recipe["ingredients"][i]["name"] = new_ingredient
+                    else:
+                        old_recipe["ingredients"][i]["name"] = new_ingredient + "(replaced)"
+
+                    for each in old_recipe["rawDirectionList"]:
                         each.replace(old_recipe["ingredients"][i]["name"], new_ingredient)
 
 
@@ -544,14 +561,20 @@ class SwapProcessPipeline(object):
 
                 if flag == 0 and count <= 5:
                     new_ingredient = self.get_ingredient(temp, database, cate)
-                    old_recipe["ingredients"][i]["name"] = new_ingredient
+                    if (old_recipe["ingredients"][i]["name"] == new_ingredient):
+                        old_recipe["ingredients"][i]["name"] = new_ingredient
+                    else:
+                        old_recipe["ingredients"][i]["name"] = new_ingredient + "(replaced)"
 
                 if (count == 5 and flag == 1) or count == 6:
                     if database[temp]["category"][category] / database[temp]["count"] < 0.25:
                         new_ingredient = self.get_seasoning(temp, database, cate,seasoning_list)
                         seasoning_list.append(new_ingredient)
-                        old_recipe["ingredients"][i]["name"] = new_ingredient
-                        for each in old_recipe["steps"]:
+                        if (old_recipe["ingredients"][i]["name"] == new_ingredient):
+                            old_recipe["ingredients"][i]["name"] = new_ingredient
+                        else:
+                            old_recipe["ingredients"][i]["name"] = new_ingredient + "(replaced)"
+                        for each in old_recipe["rawDirectionList"]:
                             each.replace(old_recipe["ingredients"][i]["name"],new_ingredient)
 
 
@@ -575,16 +598,22 @@ class SwapProcessPipeline(object):
             toHealthyRecipe = copy.deepcopy(item)
             toVegetarianRecipe = copy.deepcopy(item)
             toVeganRecipe = copy.deepcopy(item)
+            fromVegetarianRecipe = copy.deepcopy(item)
+            fromHealthyRecipe = copy.deepcopy(item)
             self.tonew(toChineseRecipe, data, 'chinese')
             self.tonew(toItalianRecipe, data, 'italian')
             self.tonew(toHealthyRecipe, data, 'healthy')
             self.tovegetarian(toVegetarianRecipe, data)
             self.tonew(toVeganRecipe, data, 'vegan')
+            self.tonew(fromVegetarianRecipe, data, 'meaty')
+            self.tonew(fromHealthyRecipe, data, 'meaty')
             item['toChinese'] = toChineseRecipe
             item['toItalian'] = toItalianRecipe
             item['toHealthy'] = toHealthyRecipe
             item['toVegetarian'] = toVegetarianRecipe
             item['toVegan'] = toVeganRecipe
+            item['fromVegetarian'] = fromVegetarianRecipe
+            item['fromHealthy'] = fromHealthyRecipe
 
 
             return item
@@ -593,7 +622,10 @@ class SwapProcessPipeline(object):
 
 class UIPipeline(object):
     def printRecipe(self, item):
-        print("++++++++++++++ Recipes +++++++++++++++")
+        print("+++++++++++++++++++++ Recipes +++++++++++++++++++++")
+        print("========== Raw Ingredients =========")
+        for i in range(0, len(item['rawIngredientList'])):
+            print(item['rawIngredientList'][i])
         print("======== Ingredients =======")
         for i in range(0, len(item['ingredients'])):
             currIngredient = item['ingredients'][i]
@@ -602,9 +634,17 @@ class UIPipeline(object):
             print("Preparation: " + currIngredient["preparation"])
             print("Method: " + str(currIngredient["method"]))
             print("Tool: " + str(currIngredient["tool"]))
+        print("======== Raw Steps =======")
+        for i in range(0, len(item['rawDirectionList'])):
+            sentences = nltk.sent_tokenize(item['rawDirectionList'][i])
+            for j in range(0, len(sentences)):
+                print(sentences[j])
         print("======== Steps =======")
         for i in range(0, len(item['steps'])):
-            print(str(i) + ". " + item['steps'][i])
+            print(str(i) + ". " + str(item['steps'][i]['ingredient']))
+            print("Method: " + str(item['steps'][i]['methods']))
+            print("Step Time: " + str(item['steps'][i]['stepTime']))
+            print("Tools: " + str(item['steps'][i]['tools']))
         print("========== End ==========")
     def process_item(self, item, spider):
         if isinstance(item, Recipe):
@@ -613,21 +653,27 @@ class UIPipeline(object):
             while True:
                 print("Select the transformation you wanna do:")
                 print("0. To Vegetarian")
-                print("1. To Vegan")
-                print("2. To Healthy")
-                print("3. To Chinese")
-                print("4. To Italian")
+                print("1. From Vegetarian")
+                print("2. To Vegan")
+                print("3. To Healthy")
+                print("4. From Healthy")
+                print("5. To Chinese")
+                print("6. To Italian")
                 print("q. quit")
                 selection = input("Your choice: ")
                 if selection == '0':
                     self.printRecipe(item["toVegetarian"])
                 elif selection == '1':
-                    self.printRecipe(item["toVegan"])
+                    self.printRecipe(item["fromVegetarian"])
                 elif selection == '2':
-                    self.printRecipe(item["toHealthy"])
+                    self.printRecipe(item["toVegan"])
                 elif selection == '3':
-                    self.printRecipe(item["toChinese"])
+                    self.printRecipe(item["toHealthy"])
                 elif selection == '4':
+                    self.printRecipe(item["fromHealthy"])
+                elif selection == '5':
+                    self.printRecipe(item["toChinese"])
+                elif selection == '6':
                     self.printRecipe(item["toItalian"])
                 elif selection == 'q':
                     break

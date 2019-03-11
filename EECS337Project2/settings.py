@@ -68,8 +68,8 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     'EECS337Project2.pipelines.InitPipeline': 10,
     'EECS337Project2.pipelines.IngredientProcessPipeline': 20,
-    'EECS337Project2.pipelines.DirectionProcessPipeline': 30,
-    'EECS337Project2.pipelines.SwapProcessPipeline': 40,
+    'EECS337Project2.pipelines.SwapProcessPipeline': 30,
+    'EECS337Project2.pipelines.DirectionProcessPipeline': 40,
     'EECS337Project2.pipelines.UIPipeline': 200,
 }
 
