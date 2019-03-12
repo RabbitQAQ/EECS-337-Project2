@@ -10,7 +10,7 @@
 
 
 ### How to run the project
-* Simply run `Python main.py` when you are in the project root
+* Simply run `Python main.py` when you are in the EECS-337-Project2/EECS337Project2/
 * Follow the instruction and input the URLs you want to query
 * The output recipe is a little bit long, it contains **raw ingredients**, **parsed ingredients**, **raw directions**, **parsed directions** and **transformation functions**
 * There are several transformation you can choose:
