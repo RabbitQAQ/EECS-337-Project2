@@ -67,7 +67,7 @@ punctuation = ['(', ')', ',', '.', ';', '?', '-']
 prepPunct = [',', '.', ';', '-']
 easyToTaggedWrongWords = ['can']
 acceptableAdjs = ['JJ']
-acceptableVerbs = ['VB', 'VBD']
+acceptableVerbs = ['VB', 'VBD', 'VBP']
 acceptableNouns = ['NN', 'NNP', 'NNS', 'IN']
 
 # Tokenizer
@@ -129,7 +129,8 @@ class IngredientProcessPipeline(object):
                                     bkpoint += 1
                             else:
                                 currQuent = currQuent + stack.pop()[0] + '| '
-                                bkpoint += 1
+                                #bkpoint += 1
+                                break
                         else:
                             break
                     elif wordtag[0] in punctuation:
@@ -191,8 +192,12 @@ class IngredientProcessPipeline(object):
 
                 # build ingredient object
                 if currName.strip() == '':
-                    currName = currPreparation
-                    currPreparation = ""
+                    if len(currPreparation.strip()) != 0:
+                        currName = currPreparation
+                        currPreparation = ""
+                    elif len(currMethod) != 0:
+                        currName = currMethod[0]
+                        currMethod.remove(currName)
                 tmpIngredient['name'] = currName
                 tmpIngredient['quantityAndMeasurement'] = currQuent
                 tmpIngredient['descriptor'] = currDescriptor
@@ -534,7 +539,8 @@ class SwapProcessPipeline(object):
                     if (old_recipe["ingredients"][i]["name"] == new_ingredient):
                         old_recipe["ingredients"][i]["name"] = new_ingredient
                     else:
-                        old_recipe["ingredients"][i]["name"] = new_ingredient + "(replaced)"
+                        old_recipe["ingredients"][i]["name"] = new_ingredient + "(original: " + \
+                                                               old_recipe["ingredients"][i]["name"] + ")"
 
                     for each in old_recipe["rawDirectionList"]:
                         each.replace(old_recipe["ingredients"][i]["name"], new_ingredient)
@@ -577,7 +583,8 @@ class SwapProcessPipeline(object):
                     if (old_recipe["ingredients"][i]["name"] == new_ingredient):
                         old_recipe["ingredients"][i]["name"] = new_ingredient
                     else:
-                        old_recipe["ingredients"][i]["name"] = new_ingredient + "(replaced)"
+                        old_recipe["ingredients"][i]["name"] = new_ingredient + "(original: " + \
+                                                               old_recipe["ingredients"][i]["name"] + ")"
 
                 if (count == 5 and flag == 1) or count == 6:
                     if database[temp]["category"][category] / database[temp]["count"] < 0.25:
@@ -586,7 +593,8 @@ class SwapProcessPipeline(object):
                         if (old_recipe["ingredients"][i]["name"] == new_ingredient):
                             old_recipe["ingredients"][i]["name"] = new_ingredient
                         else:
-                            old_recipe["ingredients"][i]["name"] = new_ingredient + "(replaced)"
+                            old_recipe["ingredients"][i]["name"] = new_ingredient + "(original: " + \
+                                                                   old_recipe["ingredients"][i]["name"] + ")"
                         for each in old_recipe["rawDirectionList"]:
                             each.replace(old_recipe["ingredients"][i]["name"],new_ingredient)
 

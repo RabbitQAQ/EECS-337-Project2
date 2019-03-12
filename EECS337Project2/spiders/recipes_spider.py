@@ -10,7 +10,7 @@ targetCategory = "vegetarian"
 
 class RecipesSpider(Spider):
     name = 'recipes_spider'
-    start_urls = ["https://www.allrecipes.com/recipe/8722/mexican-chicken-i/?clickId=right%20rail0&internalSource=rr_feed_recipe_sb&referringId=73634%20referringContentType=recipe"]
+    start_urls = []
     startCount = 527
     maxUrlCount = 0
     urlCount = 0
@@ -26,6 +26,11 @@ class RecipesSpider(Spider):
                 indexDict[category] = len(urls)
                 start_urls.extend(urls)
         start_urls = start_urls[startCount:]
+
+    def __init__(self, url):
+        super(RecipesSpider, self).__init__()
+        self.start_urls.append(url)
+
 
     def parse(self, response):
         recipeName = response.xpath('//h1[@id="recipe-main-content"]/text()').extract()[0]

@@ -2,5 +2,6 @@ from scrapy.cmdline import execute
 
 
 if __name__ == '__main__':
-    execute("scrapy crawl recipes_spider".split())
-    #execute("scrapy crawl category_spider".split())0
+    url = input("Please Input Recipe URL:")
+    execute(("scrapy crawl recipes_spider -a url=" + url).split())
+    #execute("scrapy crawl category_spider".split())
